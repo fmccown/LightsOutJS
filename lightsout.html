@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Lights Out</title>
+   <style>
+      body {
+         font-family: Arial;
+      }
+
+      .grid3x3 {
+         display: grid;
+         grid-template-columns: 40px 40px 40px;
+         grid-template-rows: 40px 40px 40px;
+         grid-gap: 2px;
+         margin-bottom: 15px;
+      }
+
+      .lightOn {
+         border: 1px solid black;
+         background-color: yellow;         
+      }
+
+      .lightOff {
+         border: 1px solid black;
+         background-color: black;
+      }
+   </style>
+   <script src="lightsout_class.js"></script>
+   <script>
+
+// LightsOutGame contains all game logic
+const game = new LightsOutGame(3);
+
+// Wait until DOM is ready before adding event handlers and starting new game
+addEventListener("DOMContentLoaded", function() {
+   document.querySelector("#newGame").addEventListener("click", newGame);
+   newGame();
+});
+
+function newGame() {
+   // Start a new game
+   game.newGame();
+
+   // Add buttons to grid
+   createGameBoard();
+
+   // Update button styles 
+   updateGridButtons();
+
+   // Clear the information 
+   document.getElementById("information").innerHTML = "";
+}
+
+function createGameBoard() {
+   // Get the grid <div> and clear existing content
+   const gameGrid = document.getElementById("gameGrid");
+   gameGrid.innerHTML = "";
+      
+   // Create the grid of buttons
+   for (let row = 0; row < game.gridSize; row++) {
+      for (let col = 0; col < game.gridSize; col++) {
+         // Create the button and append as a child to gameGrid
+         const button = document.createElement("input");
+         button.type = "button";
+         gameGrid.appendChild(button);
+         
+         // Set the button's click event handler
+         button.addEventListener("click", function(e) {
+            clickLight(row, col);
+         });
+      }
+   }  
+}
+
+function updateGridButtons() {
+   // Make grid buttons use the right class to display on or off   
+   let row = 0;
+   let col = 0;
+   const gridButtons = document.querySelectorAll("#gameGrid > input");
+   for (const button of gridButtons) {
+      button.className = game.getGridValue(row, col) ? "lightOn" : "lightOff";
+     
+      col++;
+      if (col == game.gridSize) {
+         col = 0;
+         row++;
+      }
+   }
+}
+
+function clickLight(row, col) {
+   // Ignore if the game is already won
+   if (game.isGameOver()) {
+      return;
+   }
+   
+   // Flip the appropriate lights
+   game.flipLights(row, col);
+   
+   // Update the HTML grid
+   updateGridButtons();
+   
+   // Display message if the game is won
+   if (game.isGameOver()) {
+      document.getElementById("information").innerHTML = "You win!";
+   }
+}
+
+   </script>
+</head>
+
+<body>
+   <h1>Lights Out</h1>
+   <div id="gameGrid" class="grid3x3"></div>
+   <p id="information"></p>
+   <input id="newGame" type="button" value="New Game">
+</body>
+
+</html>

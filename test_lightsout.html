@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- add mocha css, to show results -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+  <!-- add mocha framework code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+  <script>
+    mocha.setup('bdd'); // minimal setup
+  </script>
+  <!-- add chai -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.js"></script>
+  <script>
+    // Make chai assert global
+    const assert = chai.assert;
+  </script>
+</head>
+
+<body>
+
+  <!-- Script to test -->
+  <script src="lightsout_class.js"></script>
+
+  <!-- Script with tests -->
+  <script src="test_lightsout.js"></script>
+
+  <!-- Show test results -->
+  <div id="mocha"></div>
+
+  <!-- Run tests -->
+  <script>
+    mocha.run();
+  </script>
+</body>
+
+</html>
