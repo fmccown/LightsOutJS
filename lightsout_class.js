@@ -1,6 +1,6 @@
 class LightsOutGame {
     
-   // TODO: Create a constructor
+   // TODO: Create a constructor with grid size parameter that calls gridSize setter
    
    // TODO: Create gridSize getter and setter (use #gridSize backing field)
    
@@ -13,7 +13,7 @@ class LightsOutGame {
            this.grid.push(new Array(this.#gridSize));
        }        
 
-       // TODO: Turn lights on/off randomly in grid
+       // TODO: Turn lights on/off randomly in grid, make sure at least 1 light is on
        
    }   
 
