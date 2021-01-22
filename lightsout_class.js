@@ -13,7 +13,7 @@ class LightsOutGame {
            this.grid.push(new Array(this.#gridSize));
        }        
 
-       // TODO: Turn lights on/off randomly in grid, make sure at least 1 light is on
+       // TODO: Turn lights on/off randomly in grid by assigning true/false; ensure at least 1 light is on
        
    }   
 
