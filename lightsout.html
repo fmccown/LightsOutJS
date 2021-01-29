@@ -7,10 +7,11 @@
          font-family: Arial;
       }
 
-      .grid3x3 {
+      #gameGrid {
+         --grid-size: 3;
          display: grid;
-         grid-template-columns: 40px 40px 40px;
-         grid-template-rows: 40px 40px 40px;
+         grid-template-columns: repeat(var(--grid-size), 40px);
+         grid-template-rows: repeat(var(--grid-size), 40px);
          grid-gap: 2px;
          margin-bottom: 15px;
       }
@@ -111,7 +112,7 @@ function clickLight(row, col) {
 
 <body>
    <h1>Lights Out</h1>
-   <div id="gameGrid" class="grid3x3"></div>
+   <div id="gameGrid"></div>
    <p id="information"></p>
    <input id="newGame" type="button" value="New Game">
 </body>
